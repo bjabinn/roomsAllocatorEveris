@@ -1,0 +1,12 @@
+<div id="search-component">
+    <h4>Search your room</h4>
+   
+    <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+    <ul class="search-result">
+      <li *ngFor="let room of roomsList$ | async" >
+        <a routerLink="../../api/details/{{room.roomId}}">
+          {{room.name}}
+        </a>
+      </li>
+    </ul>
+  </div>

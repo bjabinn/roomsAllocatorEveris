@@ -1,0 +1,16 @@
+.visible{
+    display: block;
+}
+.hidden{
+    visibility: hidden;
+}
+.middle{
+    margin-left: auto;
+    margin-right: auto;
+}
+.textRight{
+    text-align: right;
+}
+.textLeft{
+    text-align: left;
+}

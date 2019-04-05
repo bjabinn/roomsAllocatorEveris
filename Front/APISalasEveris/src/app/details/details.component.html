@@ -1,0 +1,49 @@
+<div [ngClass]="(room!=null)?'visible':'hidden'" *ngIf="room">
+  <h2>{{room.name}} Details</h2>
+  <table class="middle">
+    <tr>
+      <td class="textRight"><span>id: </span></td>
+      <td class="textLeft">{{room.roomId}}</td>
+    </tr>
+    <tr>
+      <td class="textRight">name:</td>
+      <td><input [(ngModel)]="room.name" placeholder="name"/></td>
+    </tr>
+    <tr>
+      <td class="textRight">floor:</td>
+      <td><input [(ngModel)]="room.floor" placeholder="floor"/></td>
+    </tr>
+    <tr>
+      <td class="textRight">number of room:</td>
+      <td><input [(ngModel)]="room.numRoom" placeholder="numRoom"/></td>
+    </tr>
+    <tr>
+      <td><button (click)="save()">Save</button></td>
+      <td><nav><button routerLink="../../../api/index">Back to list of rooms</button></nav>
+      </td>
+    </tr> 
+</table>
+</div>
+<div [ngClass]="(room!=null)?'hidden':'visible'">
+  <h2>Create a room</h2>    
+  <table class="middle">
+      <tr>
+        <td class="textRight">name:</td>
+        <td><input #name placeholder="name"/></td>
+      </tr>
+      <tr>
+        <td class="textRight">floor:</td>
+        <td><input #floor placeholder="floor"/></td>
+      </tr>
+      <tr>
+        <td class="textRight">number of room:</td>
+        <td><input #numRoom placeholder="numRoom"/></td>
+      </tr>
+      <tr>
+        <td><button (click)="create(name.value, floor.value,numRoom.value)">Create</button></td>
+        <td><nav><button routerLink="../../../api/index">Back to list of rooms</button></nav>
+        </td>
+      </tr> 
+  </table>
+</div>
+

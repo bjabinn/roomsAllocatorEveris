@@ -1,0 +1,16 @@
+<h1>
+  {{ title }}
+ </h1>
+ <app-search></app-search>
+<ul class="rooms">
+  <li *ngFor="let room of roomsList">
+    <a routerLink="../../api/details/{{room.roomId}}">
+      <span class="badge">{{room.roomId}}</span>{{room.name}}, floor: {{room.floor}}, number: {{room.numRoom}}
+    </a>
+    <button class="delete" title="delete room" (click)="delete(room)">X</button>
+  </li>
+</ul>
+<button class="btnAñadir" routerLink="../../api/details/0">Create Room</button>
+
+
+
