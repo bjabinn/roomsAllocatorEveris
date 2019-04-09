@@ -1,16 +1,35 @@
-<h1>
-  {{ title }}
- </h1>
+<head>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<div class="container">
  <app-search></app-search>
-<ul class="rooms">
-  <li *ngFor="let room of roomsList">
+ <a routerLink="../../api/details/0" class="btn-floating btn-large light-green lighten-1">
+  <i class="material-icons left">add_circle</i></a>
+<ul>
+  <div class="row">
+      <div class="col s1 m1"><span>id</span></div>
+      <div class="col s5 m4">name</div>
+      <div class="col s2 m3">floor</div>
+      <div class="col s3 m3">number of room</div>
+      <div class="col s1 marginLeft paddingRight">Del</div>
+  </div>
+  <li *ngFor="let room of roomsList" class="row z-depth-1 grey lighten-4">
     <a routerLink="../../api/details/{{room.roomId}}">
-      <span class="badge">{{room.roomId}}</span>{{room.name}}, floor: {{room.floor}}, number: {{room.numRoom}}
+      <div class="col s1 m1"><span>{{room.roomId}}</span></div>
+      <div class="col s5 m4">{{room.name}}</div>
+      <div class="col s2 m3">{{room.floor}}</div>
+      <div class="col s3 m3">{{room.numRoom}}</div>
     </a>
-    <button class="delete" title="delete room" (click)="delete(room)">X</button>
+    <div class="col s1"><button class="btn red" title="delete room" (click)="delete(room)">
+      <i class="material-icons">highlight_off</i></button></div>
   </li>
 </ul>
-<button class="btnAñadir" routerLink="../../api/details/0">Create Room</button>
+</div>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 
 

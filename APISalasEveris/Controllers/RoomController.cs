@@ -1,35 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
+using System.Web.Http;
 using APISalasEveris.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 
 namespace APISalasEveris.Controllers
 {
-    [Route("api/[controller]")]
+    [Microsoft.AspNetCore.Mvc.Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class RoomController : Controller
     {
+        private readonly IConfiguration _configuration;
         private readonly RoomContext _context;
 
-        public RoomController(RoomContext context)
+        public RoomController(RoomContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
-        [HttpGet]
+
+        [Microsoft.AspNetCore.Mvc.HttpGet]
         public async Task<ActionResult<IEnumerable<RoomInformation>>> Index()
         {
             return await _context.RoomInformations.ToListAsync();
         }
-        [HttpGet("name/{name}")]
+        [Microsoft.AspNetCore.Mvc.HttpGet("name/{name}")]
         public async Task<ActionResult<IEnumerable<RoomInformation>>> Search(string name)
         {            
             var roomsWithFilter = await _context.RoomInformations.Where(room => room.Name.Contains(name)).ToListAsync();
             return roomsWithFilter;
         }
-        [HttpGet("{id}")]
+        [Microsoft.AspNetCore.Mvc.HttpGet("{id}")]
         public async Task<ActionResult<RoomInformation>> Details(int? id)
         {
             if (id == null)
@@ -41,15 +52,34 @@ namespace APISalasEveris.Controllers
                 return NotFound();
             return RoomInformation;
         }
-        [HttpPost]
+        [Microsoft.AspNetCore.Mvc.HttpPost]
         public async Task<ActionResult<RoomInformation>> Create(RoomInformation room)
         {
             _context.RoomInformations.Add(room);
             await _context.SaveChangesAsync();
+            var claims = new[]
+        {
+            new Claim("UserData", JsonConvert.SerializeObject(room))
+        };
+            var token = new JwtSecurityToken
+        (
+            issuer: _configuration["ApiAuth:Issuer"],
+            audience: _configuration["ApiAuth:Audience"],
+            claims: claims,
+            expires: DateTime.UtcNow.AddDays(60),
+            notBefore: DateTime.UtcNow,
+            signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["ApiAuth:SecretKey"])),
+            SecurityAlgorithms.HmacSha256)
+        );
 
-            return CreatedAtAction(nameof(Details), new { id = room.RoomId}, room);
+            return Ok(
+            new
+            {
+                response = new JwtSecurityTokenHandler().WriteToken(token)
+            }
+        );
         }
-        [HttpPut("{id}")]
+        [Microsoft.AspNetCore.Mvc.HttpPut("{id}")]
         public async Task<IActionResult> Edit(int id, RoomInformation room)
         {
             //if it does not exist
@@ -63,7 +93,7 @@ namespace APISalasEveris.Controllers
 
             return NoContent();
         }
-        [HttpDelete("{id}")]
+        [Microsoft.AspNetCore.Mvc.HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var room = await _context.RoomInformations.FindAsync(id);

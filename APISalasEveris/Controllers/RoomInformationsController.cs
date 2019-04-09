@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -112,4 +112,4 @@ namespace APISalasEveris.Controllers
             return _context.RoomInformations.Any(e => e.RoomId == id);
         }
     }
-}
+}*/

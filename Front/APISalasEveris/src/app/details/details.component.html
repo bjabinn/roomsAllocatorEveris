@@ -1,49 +1,50 @@
-<div [ngClass]="(room!=null)?'visible':'hidden'" *ngIf="room">
+<head>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<div [ngClass]="(room!=null)?'visible':'hidden'" *ngIf="room" class="container">
   <h2>{{room.name}} Details</h2>
-  <table class="middle">
-    <tr>
-      <td class="textRight"><span>id: </span></td>
-      <td class="textLeft">{{room.roomId}}</td>
-    </tr>
-    <tr>
-      <td class="textRight">name:</td>
-      <td><input [(ngModel)]="room.name" placeholder="name"/></td>
-    </tr>
-    <tr>
-      <td class="textRight">floor:</td>
-      <td><input [(ngModel)]="room.floor" placeholder="floor"/></td>
-    </tr>
-    <tr>
-      <td class="textRight">number of room:</td>
-      <td><input [(ngModel)]="room.numRoom" placeholder="numRoom"/></td>
-    </tr>
-    <tr>
-      <td><button (click)="save()">Save</button></td>
-      <td><nav><button routerLink="../../../api/index">Back to list of rooms</button></nav>
-      </td>
-    </tr> 
-</table>
+  <div class="row">
+    <div class="col s6 textRight">id:</div>
+    <div class="col s6 textLeft">{{room.roomId}}</div>
+  </div>
+  <div class="row">
+    <div class="col s6 textRight">name:</div>
+    <div class="col s6"><input [(ngModel)]="room.name" placeholder="name"/></div>
+  </div>
+  <div class="row">
+    <div class="col s6 textRight">floor:</div>
+    <div class="col s6"><input [(ngModel)]="room.floor" placeholder="floor"/></div>
+  </div>
+  <div class="row">
+    <div class="col s6 textRight">number of room:</div>
+    <div class="col s6"><input [(ngModel)]="room.numRoom" placeholder="numRoom"/></div>
+  </div>
+  <div class="row">
+    <div class="col s6 textRight"><button class="btn" (click)="save()"><i class="material-icons left">save</i>Save</button></div>
+    <div class="col s6"><button routerLink="../../../api/index" class="btn black"><i class="material-icons left">view_list</i>Back to list of rooms</button></div>
+  </div> 
 </div>
-<div [ngClass]="(room!=null)?'hidden':'visible'">
-  <h2>Create a room</h2>    
-  <table class="middle">
-      <tr>
-        <td class="textRight">name:</td>
-        <td><input #name placeholder="name"/></td>
-      </tr>
-      <tr>
-        <td class="textRight">floor:</td>
-        <td><input #floor placeholder="floor"/></td>
-      </tr>
-      <tr>
-        <td class="textRight">number of room:</td>
-        <td><input #numRoom placeholder="numRoom"/></td>
-      </tr>
-      <tr>
-        <td><button (click)="create(name.value, floor.value,numRoom.value)">Create</button></td>
-        <td><nav><button routerLink="../../../api/index">Back to list of rooms</button></nav>
-        </td>
-      </tr> 
-  </table>
+<div [ngClass]="(room!=null)?'hidden':'visible'" class="container">
+  <h2>Create a room</h2>  
+    <div class="row">
+      <div class="col s6 textRight">name:</div>
+      <div class="col s6"><input #name placeholder="name"/></div>
+    </div>
+    <div class="row">
+      <div class="col s6 textRight">floor:</div>
+      <div class="col s6"><input #floor placeholder="floor"/></div>
+    </div>
+    <div class="row">
+      <div class="col s6 textRight">number of room:</div>
+      <div class="col s6"><input #numRoom placeholder="numRoom"/></div>
+    </div>  
+    <div class="row">
+        <div class="col s6 textRight"><button class="btn" (click)="create(name.value, floor.value,numRoom.value)"><i class="material-icons left">create</i>Create</button></div>
+        <div class="col s6"><button routerLink="../../../api/index" class="btn black"><i class="material-icons left">view_list</i>Back to list of rooms</button></div>
+    </div>
 </div>
-
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

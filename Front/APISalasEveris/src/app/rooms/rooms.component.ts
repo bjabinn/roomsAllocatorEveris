@@ -9,7 +9,7 @@ import { RoomService } from "../room.service"
 })
 export class RoomsComponent implements OnInit {
   roomsList: Room[];
-  title="Everis Center Rooms";
+
     constructor( private roomService: RoomService) { }
   ngOnInit() {
     this.getRooms();
