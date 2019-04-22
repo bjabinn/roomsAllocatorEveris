@@ -31,6 +31,8 @@ namespace APISalasEveris
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -41,26 +43,19 @@ namespace APISalasEveris
             services.AddSwaggerGen(config => config.SwaggerDoc("vf", new Swashbuckle.AspNetCore.Swagger.Info() {
                 Title = "API Rooms swagger"
             }));
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             var connection = @"Server=tcp:roomallocator.database.windows.net,1433;Initial Catalog=roomAllocaor;Persist Security Info=False;User ID=jbeltrma;Password=Everis2019;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             services.AddDbContext<RoomContext>
                 (options => options.UseSqlServer(connection));
-
-            services.AddAuthentication(options => {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(jwtBearerOptions =>
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(jwtBearerOptions =>
             {
-                jwtBearerOptions.Audience = Configuration["ApiAuth:Audience"];
                 jwtBearerOptions.TokenValidationParameters = new TokenValidationParameters()
                 {
-                    ValidateActor = true,
                     ValidateAudience = true,
                     ValidateLifetime = true,
+                    ValidateIssuer = true,
                     ValidateIssuerSigningKey = true,
                     ValidIssuer = Configuration["ApiAuth:Issuer"],
+                    ValidAudience=Configuration["ApiAuth:Audience"],
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["ApiAuth:SecretKey"]))
                 };
             });

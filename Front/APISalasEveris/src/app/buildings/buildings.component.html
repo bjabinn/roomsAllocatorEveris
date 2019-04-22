@@ -1,0 +1,36 @@
+<head>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<div class="container">
+  <div class="row"></div>
+  <h3>Buildings</h3>
+ <a routerLink="/buildings/building-details/0" class="btn-floating btn-large light-green lighten-1 ">
+  <i class="material-icons left">add_circle</i></a>
+<ul>
+  <div class="row">
+      <div class="col s2"><span>Office</span></div>
+      <div class="col s5 m4">Building name</div>
+      <div class="col s2 m4">Street</div>
+      <div class="col s1">Number of street</div>
+      <div class="col s1 marginLeft paddingRight">Del</div>
+  </div>
+  <li *ngFor="let building of buildingsList" class="row z-depth-1 grey lighten-4">
+    <a routerLink="/buildings/building-details/{{building.buildingId}}">
+      <div class="col s2"><span>{{building.office.officeName}}</span></div>
+      <div class="col s5 m4">{{building.buildingName}}</div>
+      <div class="col s3 m4">{{building.street}}</div>
+      <div class="col s1">{{building.numberOfStreet}}</div>
+    </a>
+    <div class="col s1"><button class="btn red" title="delete Building" (click)="delete(building)">
+      <i class="material-icons">highlight_off</i></button></div>
+  </li>
+</ul>
+</div>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+

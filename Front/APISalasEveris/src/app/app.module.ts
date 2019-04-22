@@ -8,19 +8,32 @@ import { HttpClientModule }    from '@angular/common/http';
 import { RoomsComponent } from './rooms/rooms.component';
 import { DetailsComponent } from './details/details.component';
 import { SearchComponent } from './search/search.component';
-
+import { BuildingsComponent } from './buildings/buildings.component';
+import { BuildingDetailsComponent } from './building-details/building-details.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule } from '@angular/material';
+import { MatFormFieldModule, MatSelectModule } from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
     RoomsComponent,
     DetailsComponent,
-    SearchComponent
+    SearchComponent,
+    BuildingsComponent,
+    BuildingDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

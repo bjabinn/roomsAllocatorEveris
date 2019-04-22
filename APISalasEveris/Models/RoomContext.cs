@@ -8,5 +8,7 @@ namespace APISalasEveris.Models
         { }
 
         public DbSet<RoomInformation> RoomInformations { get; set; }
+        public DbSet<Office> Office { get; set; }
+        public DbSet<Building> Building { get; set; }
     }
 }

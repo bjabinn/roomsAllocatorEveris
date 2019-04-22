@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Room } from '../room';
+import { Room } from '../Entities/room';
 import { RoomService } from "../room.service";
 import { Observable, Subject } from 'rxjs';
 import {

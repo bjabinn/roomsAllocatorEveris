@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Room } from '../room';
+import { Room } from '../Entities/room';
 import { RoomService } from "../room.service"
 
 @Component({
@@ -16,6 +16,7 @@ export class RoomsComponent implements OnInit {
   }
   getRooms(): void{
     this.roomService.getRooms().subscribe(RoomsList=>this.roomsList=RoomsList);
+    
   }
   delete(room:Room):void{
     this.roomsList=this.roomsList.filter(r=>r!==room);

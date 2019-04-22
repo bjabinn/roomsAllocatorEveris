@@ -18,21 +18,77 @@ namespace APISalasEveris.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("APISalasEveris.Models.Building", b =>
+                {
+                    b.Property<int>("BuildingId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BuildingName");
+
+                    b.Property<int>("NumberOfStreet");
+
+                    b.Property<int>("OfficeId");
+
+                    b.Property<string>("Street");
+
+                    b.HasKey("BuildingId");
+
+                    b.HasIndex("OfficeId");
+
+                    b.ToTable("Building");
+                });
+
+            modelBuilder.Entity("APISalasEveris.Models.Office", b =>
+                {
+                    b.Property<int>("OfficeId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Alias");
+
+                    b.Property<string>("OfficeName");
+
+                    b.HasKey("OfficeId");
+
+                    b.ToTable("Office");
+                });
+
             modelBuilder.Entity("APISalasEveris.Models.RoomInformation", b =>
                 {
                     b.Property<int>("RoomId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Floor");
+                    b.Property<int>("BuildingId");
 
-                    b.Property<string>("Name");
+                    b.Property<int>("Floor");
 
                     b.Property<string>("NumRoom");
 
+                    b.Property<string>("RoomName");
+
                     b.HasKey("RoomId");
 
+                    b.HasIndex("BuildingId");
+
                     b.ToTable("RoomInformations");
+                });
+
+            modelBuilder.Entity("APISalasEveris.Models.Building", b =>
+                {
+                    b.HasOne("APISalasEveris.Models.Office", "Office")
+                        .WithMany()
+                        .HasForeignKey("OfficeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("APISalasEveris.Models.RoomInformation", b =>
+                {
+                    b.HasOne("APISalasEveris.Models.Building", "Building")
+                        .WithMany()
+                        .HasForeignKey("BuildingId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

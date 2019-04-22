@@ -6,22 +6,22 @@
 </head>
 <div class="container">
  <app-search></app-search>
- <a routerLink="../../api/details/0" class="btn-floating btn-large light-green lighten-1">
+ <a routerLink="/room/details/0" class="btn-floating btn-large light-green lighten-1">
   <i class="material-icons left">add_circle</i></a>
 <ul>
   <div class="row">
-      <div class="col s1 m1"><span>id</span></div>
+      <div class="col s2"><span>Build Name</span></div>
       <div class="col s5 m4">name</div>
       <div class="col s2 m3">floor</div>
-      <div class="col s3 m3">number of room</div>
+      <div class="col s2 m2">capacity</div>
       <div class="col s1 marginLeft paddingRight">Del</div>
   </div>
   <li *ngFor="let room of roomsList" class="row z-depth-1 grey lighten-4">
-    <a routerLink="../../api/details/{{room.roomId}}">
-      <div class="col s1 m1"><span>{{room.roomId}}</span></div>
-      <div class="col s5 m4">{{room.name}}</div>
+    <a routerLink="/room/details/{{room.roomId}}">
+      <div class="col s2"><span>{{room.building.buildingName}}</span></div>
+      <div class="col s5 m4">{{room.roomName}}</div>
       <div class="col s2 m3">{{room.floor}}</div>
-      <div class="col s3 m3">{{room.numRoom}}</div>
+      <div class="col s2 m2">{{room.numRoom}}</div>
     </a>
     <div class="col s1"><button class="btn red" title="delete room" (click)="delete(room)">
       <i class="material-icons">highlight_off</i></button></div>

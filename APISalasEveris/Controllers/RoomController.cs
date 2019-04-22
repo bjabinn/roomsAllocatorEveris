@@ -15,9 +15,9 @@ using Newtonsoft.Json;
 
 namespace APISalasEveris.Controllers
 {
-    [Microsoft.AspNetCore.Mvc.Route("api/[controller]")]
-    [ApiController]
     [Authorize]
+    [ApiController]
+    [Microsoft.AspNetCore.Mvc.Route("api/[controller]")]
     public class RoomController : Controller
     {
         private readonly IConfiguration _configuration;
@@ -32,22 +32,27 @@ namespace APISalasEveris.Controllers
         [Microsoft.AspNetCore.Mvc.HttpGet]
         public async Task<ActionResult<IEnumerable<RoomInformation>>> Index()
         {
-            return await _context.RoomInformations.ToListAsync();
+            List<RoomInformation> rooms = new List<RoomInformation>();
+
+            rooms = await _context.RoomInformations.Include(r => r.Building).ToListAsync();
+
+
+            return rooms;
         }
         [Microsoft.AspNetCore.Mvc.HttpGet("name/{name}")]
         public async Task<ActionResult<IEnumerable<RoomInformation>>> Search(string name)
         {            
-            var roomsWithFilter = await _context.RoomInformations.Where(room => room.Name.Contains(name)).ToListAsync();
+            var roomsWithFilter = await _context.RoomInformations.Where(room => room.RoomName.Contains(name)).ToListAsync();
             return roomsWithFilter;
         }
         [Microsoft.AspNetCore.Mvc.HttpGet("{id}")]
-        public async Task<ActionResult<RoomInformation>> Details(int? id)
+        public async Task<ActionResult<IEnumerable<RoomInformation>>> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            var RoomInformation = await _context.RoomInformations.FindAsync(id);
+            var RoomInformation = await _context.RoomInformations.Include(r=>r.Building).Where(room=>room.RoomId==id).ToListAsync();
             if (RoomInformation == null)
                 return NotFound();
             return RoomInformation;

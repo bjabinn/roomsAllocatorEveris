@@ -4,47 +4,76 @@
 <!--Import Google Icon Font-->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<div [ngClass]="(room!=null)?'visible':'hidden'" *ngIf="room" class="container">
-  <h2>{{room.name}} Details</h2>
+<div class="form-group">
+<div [ngClass]="(roomListForm[0]!=null)?'visible':'hidden'" *ngIf="roomListForm[0]" class="container">
+  <h2>{{roomListForm[0].roomName}} Details</h2>
   <div class="row">
-    <div class="col s6 textRight">id:</div>
-    <div class="col s6 textLeft">{{room.roomId}}</div>
+    <div class="col s6 textRight">Id:</div>
+    <div class="col s6 textLeft">{{roomListForm[0].roomId}}</div>
   </div>
   <div class="row">
-    <div class="col s6 textRight">name:</div>
-    <div class="col s6"><input [(ngModel)]="room.name" placeholder="name"/></div>
+      <div class="col s6 textRight">Building:</div>
+      <div class="col s6textLeft">{{roomListForm[0].building.buildingName}}</div>
   </div>
   <div class="row">
-    <div class="col s6 textRight">floor:</div>
-    <div class="col s6"><input [(ngModel)]="room.floor" placeholder="floor"/></div>
+    <div class="col s6 textRight">Name:</div>
+    <div class="col s6"><input [(ngModel)]="roomListForm[0].roomName" placeholder="name"/></div>
   </div>
   <div class="row">
-    <div class="col s6 textRight">number of room:</div>
-    <div class="col s6"><input [(ngModel)]="room.numRoom" placeholder="numRoom"/></div>
+    <div class="col s6 textRight">Floor:</div>
+    <div class="col s6"><input [(ngModel)]="roomListForm[0].floor" placeholder="floor"/></div>
+  </div>
+  <div class="row">
+    <div class="col s6 textRight">Number of room:</div>
+    <div class="col s6"><input [(ngModel)]="roomListForm[0].numRoom" placeholder="numRoom"/></div>
   </div>
   <div class="row">
     <div class="col s6 textRight"><button class="btn" (click)="save()"><i class="material-icons left">save</i>Save</button></div>
-    <div class="col s6"><button routerLink="../../../api/index" class="btn black"><i class="material-icons left">view_list</i>Back to list of rooms</button></div>
+    <div class="col s6"><button routerLink="/room/index" class="btn black"><i class="material-icons left">view_list</i>Back to list of rooms</button></div>
   </div> 
 </div>
-<div [ngClass]="(room!=null)?'hidden':'visible'" class="container">
+<div [ngClass]="(roomListForm[0]!=null)?'hidden':'visible'" class="container">
   <h2>Create a room</h2>  
     <div class="row">
-      <div class="col s6 textRight">name:</div>
+      <div class="col s6 textRight">Name:</div>
       <div class="col s6"><input #name placeholder="name"/></div>
     </div>
     <div class="row">
-      <div class="col s6 textRight">floor:</div>
+    <div class="col s6 textRight">Select Office:</div>
+    <div class="col s6">
+        <mat-form-field>
+            <mat-select>
+             <mat-option *ngFor="let o of offices" [value]="o.officeId">
+               {{o.officeName}}
+             </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <form>
+          <select>
+            <option *ngFor="let o of offices">
+              {{o.officeName}}
+            </option>
+          </select>
+        </form>
+    </div>
+    </div>
+    <div class="row">
+      <div class="col s6 textRight">Building:</div>
+      <div class="col s6textLeft">{{roomListForm[0].building.buildingName}}</div>
+  </div>
+    <div class="row">
+      <div class="col s6 textRight">Floor:</div>
       <div class="col s6"><input #floor placeholder="floor"/></div>
     </div>
     <div class="row">
-      <div class="col s6 textRight">number of room:</div>
+      <div class="col s6 textRight">Number of room:</div>
       <div class="col s6"><input #numRoom placeholder="numRoom"/></div>
     </div>  
     <div class="row">
         <div class="col s6 textRight"><button class="btn" (click)="create(name.value, floor.value,numRoom.value)"><i class="material-icons left">create</i>Create</button></div>
-        <div class="col s6"><button routerLink="../../../api/index" class="btn black"><i class="material-icons left">view_list</i>Back to list of rooms</button></div>
+        <div class="col s6"><button routerLink="/room/index" class="btn black"><i class="material-icons left">view_list</i>Back to list of rooms</button></div>
     </div>
 </div>
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
