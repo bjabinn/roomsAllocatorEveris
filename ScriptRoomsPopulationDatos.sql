@@ -1,5 +1,7 @@
 USE roomAllocaor;
-
+INSERT INTO Office(OfficeName,Alias)VALUES('Sevilla','SVQ');
+INSERT INTO Building(OfficeId,BuildingName,Street,NumberOfStreet)VALUES('1','Torre Sevilla','Calle Gonzalo Jimenez de Quesada','2');
+INSERT INTO Building(OfficeId,BuildingName,Street,NumberOfStreet)VALUES('1','Edificio Cartuja','Avenida Americo Vespucio','5');
 INSERT INTO RoomInformations(BuildingId,RoomName,Floor,NumRoom)VALUES('2','SVQ-Cartuja-Superacion','0','10');
 INSERT INTO RoomInformations(BuildingId,RoomName,Floor,NumRoom)VALUES('2','SVQ-Cartuja-Dialogo','0','3');
 INSERT INTO RoomInformations(BuildingId,RoomName,Floor,NumRoom)VALUES('2','SVQ-Cartuja-Futuro','0','3');

@@ -43,7 +43,7 @@ namespace APISalasEveris
             services.AddSwaggerGen(config => config.SwaggerDoc("vf", new Swashbuckle.AspNetCore.Swagger.Info() {
                 Title = "API Rooms swagger"
             }));
-            var connection = @"Server=tcp:roomallocator.database.windows.net,1433;Initial Catalog=roomAllocaor;Persist Security Info=False;User ID=jbeltrma;Password=Everis2019;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            var connection = @"Data Source=SVQ-8Y1B8C2\SQLEXPRESS;Initial Catalog=roomAllocaor;User ID=sa;Password=Everis2016;Connection Timeout=30;integrated security=False;";
             services.AddDbContext<RoomContext>
                 (options => options.UseSqlServer(connection));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(jwtBearerOptions =>
@@ -82,7 +82,7 @@ namespace APISalasEveris
             {
                 app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
+                //app.UseHsts();
             }
             
             app.UseHttpsRedirection();

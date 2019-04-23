@@ -34,7 +34,7 @@ namespace APISalasEveris.Controllers
         {
             List<RoomInformation> rooms = new List<RoomInformation>();
 
-            rooms = await _context.RoomInformations.Include(r => r.Building).ToListAsync();
+            rooms = await _context.RoomInformations.Include(r => r.Building.Office).ToListAsync();
 
 
             return rooms;

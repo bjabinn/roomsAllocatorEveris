@@ -3,3 +3,14 @@ C:\Users\mromalde\Desktop\Proyects\Curso.NET Core\APISalasEveris\APISalasEveris\
 C:\Users\mromalde\Desktop\Proyects\Curso.NET Core\APISalasEveris\APISalasEveris\obj\Debug\netcoreapp2.2\APISalasEveris.RazorAssemblyInfo.cs
 C:\Users\mromalde\Desktop\Proyects\Curso.NET Core\APISalasEveris\APISalasEveris\obj\Debug\netcoreapp2.2\APISalasEveris.AssemblyInfoInputs.cache
 C:\Users\mromalde\Desktop\Proyects\Curso.NET Core\APISalasEveris\APISalasEveris\obj\Debug\netcoreapp2.2\APISalasEveris.AssemblyInfo.cs
+C:\Users\mromalde\Desktop\Proyects\Curso.NET Core\APISalasEveris\APISalasEveris\bin\Debug\netcoreapp2.2\APISalasEveris.deps.json
+C:\Users\mromalde\Desktop\Proyects\Curso.NET Core\APISalasEveris\APISalasEveris\bin\Debug\netcoreapp2.2\APISalasEveris.runtimeconfig.json
+C:\Users\mromalde\Desktop\Proyects\Curso.NET Core\APISalasEveris\APISalasEveris\bin\Debug\netcoreapp2.2\APISalasEveris.runtimeconfig.dev.json
+C:\Users\mromalde\Desktop\Proyects\Curso.NET Core\APISalasEveris\APISalasEveris\bin\Debug\netcoreapp2.2\APISalasEveris.dll
+C:\Users\mromalde\Desktop\Proyects\Curso.NET Core\APISalasEveris\APISalasEveris\bin\Debug\netcoreapp2.2\APISalasEveris.pdb
+C:\Users\mromalde\Desktop\Proyects\Curso.NET Core\APISalasEveris\APISalasEveris\bin\Debug\netcoreapp2.2\APISalasEveris.Views.dll
+C:\Users\mromalde\Desktop\Proyects\Curso.NET Core\APISalasEveris\APISalasEveris\obj\Debug\netcoreapp2.2\APISalasEveris.csprojAssemblyReference.cache
+C:\Users\mromalde\Desktop\Proyects\Curso.NET Core\APISalasEveris\APISalasEveris\obj\Debug\netcoreapp2.2\APISalasEveris.RazorTargetAssemblyInfo.cache
+C:\Users\mromalde\Desktop\Proyects\Curso.NET Core\APISalasEveris\APISalasEveris\obj\Debug\netcoreapp2.2\APISalasEveris.dll
+C:\Users\mromalde\Desktop\Proyects\Curso.NET Core\APISalasEveris\APISalasEveris\obj\Debug\netcoreapp2.2\APISalasEveris.pdb
+C:\Users\mromalde\Desktop\Proyects\Curso.NET Core\APISalasEveris\APISalasEveris\obj\Debug\netcoreapp2.2\APISalasEveris.csproj.CopyComplete
