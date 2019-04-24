@@ -18,13 +18,8 @@ button{
   a:hover {
     color: black;
   }
-
-  .topSeparated{
-      padding-top: 5%; 
-  }
 h3{
-    color: #616161;
-    text-align: center;
+  text-align: center;
 }
 .btnBuilding{
   margin-left: 10%

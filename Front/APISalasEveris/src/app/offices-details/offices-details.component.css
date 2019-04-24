@@ -1,6 +1,8 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-
+h3{
+    text-align: center;
+}
 .visible{
     display: block;
 }

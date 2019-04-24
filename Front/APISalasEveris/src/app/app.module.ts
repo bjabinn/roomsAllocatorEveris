@@ -13,6 +13,8 @@ import { BuildingDetailsComponent } from './building-details/building-details.co
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule } from '@angular/material';
 import { MatFormFieldModule, MatSelectModule } from '@angular/material';
+import { OfficesComponent } from './offices/offices.component';
+import { OfficesDetailsComponent } from './offices-details/offices-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +22,9 @@ import { MatFormFieldModule, MatSelectModule } from '@angular/material';
     DetailsComponent,
     SearchComponent,
     BuildingsComponent,
-    BuildingDetailsComponent
+    BuildingDetailsComponent,
+    OfficesComponent,
+    OfficesDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,45 @@
+<head>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<div class="form-group">
+<div [ngClass]="(office!=null)?'visible':'hidden'" *ngIf="office" class="container">
+  <h2>{{office.officeName}} Details</h2>
+  <div class="row">
+    <div class="col s6 textRight">Id:</div>
+    <div class="col s6 textLeft">{{office.officeId}}</div>
+  </div>
+  <div class="row">
+    <div class="col s6 textRight">Name:</div>
+    <div class="col s6"><input [(ngModel)]="office.officeName" placeholder="name"/></div>
+  </div>
+  <div class="row">
+    <div class="col s6 textRight">Alias:</div>
+    <div class="col s6"><input [(ngModel)]="office.alias" placeholder="alias"/></div>
+  </div>
+  <div class="row">
+    <div class="col s6 textRight"><button class="btn" (click)="save()"><i class="material-icons left">save</i>Save</button></div>
+    <div class="col s6"><button routerLink="/offices/index" class="btn black"><i class="material-icons left">view_list</i>Back to list of rooms</button></div>
+  </div>
+  </div> 
+</div>
+<div [ngClass]="(office!=null)?'hidden':'visible'" class="container">
+  <h2>Create an office</h2>  
+    <div class="row">
+      <div class="col s6 textRight">Name:</div>
+      <div class="col s6"><input #name placeholder="name"/></div>
+    </div>
+    <div class="row">
+      <div class="col s6 textRight">Alias:</div>
+      <div class="col s6textLeft"><input #alias placeholder="alias"/></div>
+    </div>
+    <div class="row">
+        <div class="col s6 textRight"><button class="btn" (click)="create(name.value,alias.value)"><i class="material-icons left">create</i>Create</button></div>
+        <div class="col s6"><button routerLink="/offices/index" class="btn black"><i class="material-icons left">view_list</i>Back to list of rooms</button></div>
+    </div>
+</div>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+

@@ -18,3 +18,10 @@ a {
 a:hover {
   color: black;
 }
+.btnBuilding{
+  margin-left: 10%
+}
+.fijo{
+  position: static;
+  z-index: 1;
+}

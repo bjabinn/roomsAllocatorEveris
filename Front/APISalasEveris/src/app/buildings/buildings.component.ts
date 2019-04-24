@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Building } from '../Entities/Building';
-import { BuildingService } from '../building.service';
+import { BuildingService } from '../Services/building.service';
 
 
 @Component({
@@ -14,10 +14,10 @@ export class BuildingsComponent implements OnInit {
   constructor(private buildingService: BuildingService) { }
 
   ngOnInit() {
-    this.getBuilds();
+    this.getBuildings();
   }
 
-  getBuilds(){
+  getBuildings(){
     this.buildingService.getBuildings().subscribe(buildings=>this.buildingsList=buildings);
   }
   delete(building:Building):void{

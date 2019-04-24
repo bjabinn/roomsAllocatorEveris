@@ -23,10 +23,10 @@ namespace APISalasEveris.Controllers
         {
             return await _context.Building.Include(r=>r.Office).ToListAsync();
         }
-        [HttpGet("name/{name}")]
-        public async Task<ActionResult<IEnumerable<Building>>> SearchBuilding(string name)
+        [HttpGet("office/{officeId}")]
+        public async Task<ActionResult<IEnumerable<Building>>> SearchBuilding(int officeId)
         {
-            var BuildingsWithFilter = await _context.Building.Where(Building => Building.BuildingName.Contains(name)).ToListAsync();
+            var BuildingsWithFilter = await _context.Building.Where(Building => Building.OfficeId==officeId).ToListAsync();
             return BuildingsWithFilter;
         }
         [HttpGet("{id}")]

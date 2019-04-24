@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpClientModule  } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Office } from './Entities/Office';
+import { Office } from '../Entities/Office';
 
 const httpOptions={
   headers: new HttpHeaders({'Content-Type': 'application/json' })
@@ -12,13 +12,14 @@ const httpOptions={
 })
 export class OfficeService {
 
-  url="https://apisalaseveris.azurewebsites.net/api/offices";
+  url="https://localhost:5004/api/offices";
   constructor(private http: HttpClient) { }
   
   getOffices(): Observable<any>{
     return this.http.get(this.url).pipe(catchError(this.handleError<any>("getOffices")));
   }
   getOffice(officeId:number):Observable<any>{
+    console.log(officeId+"..");
     return this.http.get(this.url+"/"+officeId).pipe(catchError(this.handleError<any>("getOffice")));
   }
   updateOffice(office:Office):Observable<any>{

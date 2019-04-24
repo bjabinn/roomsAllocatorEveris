@@ -2,17 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Room } from '../Entities/room';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { RoomService } from '../room.service';
+import { RoomService } from '../Services/room.service';
 import { Building } from '../Entities/Building';
+import { BuildingService } from '../Services/building.service';
 import { Office } from '../Entities/Office';
-import { OfficeService} from '../office.service';
-
-
-
-export interface Food {
-  value: string;
-  viewValue: string;
-}
+import { OfficeService} from '../Services/office.service';
 
 @Component({
   selector: 'app-details',
@@ -28,17 +22,11 @@ export class DetailsComponent implements OnInit {
   roomListForm:Room[];
   buildings:Building[];
   offices:Office[];
-  myDropDown : string;
+  officeSelected:string="0";
+  buildingSelected:string="0";
   constructor(private route: ActivatedRoute, private location: Location, private roomService: RoomService,
-     private officeService: OfficeService) { }
-
-
-     foods: Food[] = [
-      {value: 'steak-0', viewValue: 'Steak'},
-      {value: 'pizza-1', viewValue: 'Pizza'},
-      {value: 'tacos-2', viewValue: 'Tacos'}
-    ];   
-     
+     private officeService: OfficeService, private buildingService: BuildingService) { }
+ 
   ngOnInit():void {
     this.getRoom();
     this.getOffices();
@@ -63,15 +51,20 @@ export class DetailsComponent implements OnInit {
     if(!numRoom) {return;}
     if(!buildingId) {return;}
     this.roomService.create({buildingId,roomName,floor,numRoom} as Room).subscribe(()=>this.goBack());
-
-
   }
   goBack(): void {
     this.location.back();
   }
-
-  onChangeofOptions(newGov) {
-    console.log(newGov);
-}
-  
+  getBuilding(buildingId:number){
+    this.buildingService.getBuilding(buildingId).subscribe(Buildings=>this.buildings=Buildings);
+    return this.buildings[0];
+  }
+  loadBuildingsByOfficeId(){
+    console.log(+this.officeSelected);
+    this.buildingService.getBuildingsByOfficeId(+this.officeSelected).subscribe(
+      Buildings=>{this.buildings=Buildings;
+        console.log('data',this.buildings);
+    
+    });
+  }
 }

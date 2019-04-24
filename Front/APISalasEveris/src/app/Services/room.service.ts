@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpClientModule  } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Room } from './Entities/room';
+import { Room } from '../Entities/room';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -13,7 +13,7 @@ const httpOptions = {
 export class RoomService {
   
   
-  url="https://apisalaseveris.azurewebsites.net/api/room";
+  url="https://localhost:5004/api/Room";
   constructor(private http: HttpClient) { }
 
   

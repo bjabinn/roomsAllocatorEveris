@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpClientModule  } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Building } from './Entities/Building';
+import { Building } from  '../Entities/Building';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -12,11 +12,14 @@ const httpOptions = {
 })
 export class BuildingService {
 
-  url="https://apisalaseveris.azurewebsites.net/api/buildings";
+  url="https://localhost:5004/api/Buildings";
   constructor(private http: HttpClient) { }
 
   getBuildings(): Observable<any>{
     return this.http.get(this.url).pipe(catchError(this.handleError<any>("getBuildings",[])));
+  }
+  getBuildingsByOfficeId(officeId:number){
+    return this.http.get(this.url + "/office/" + officeId).pipe(catchError(this.handleError<any>("getBuildingByOfficeId")));
   }
   getBuilding(id:number): Observable<any>{
     return this.http.get(this.url + "/" + id).pipe(catchError(this.handleError<any>("getBuild "+id,)))
