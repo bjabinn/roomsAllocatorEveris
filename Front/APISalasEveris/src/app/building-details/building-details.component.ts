@@ -15,6 +15,7 @@ import { OfficeService} from '../Services/office.service';
 export class BuildingDetailsComponent implements OnInit {
     buildingsList:Building[];
     officesList:Office[];
+    officeSelected:string="0";
   constructor(private route: ActivatedRoute, private location:Location, private buildingService:BuildingService,
     private officeService:OfficeService) { }
 
