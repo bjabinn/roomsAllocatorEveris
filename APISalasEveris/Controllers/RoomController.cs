@@ -12,10 +12,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
+using FromBodyAttribute = Microsoft.AspNetCore.Mvc.FromBodyAttribute;
 
 namespace APISalasEveris.Controllers
 {
-    [Authorize]
+    
     [ApiController]
     [Microsoft.AspNetCore.Mvc.Route("api/[controller]")]
     public class RoomController : Controller
@@ -28,16 +29,20 @@ namespace APISalasEveris.Controllers
             _context = context;
             _configuration = configuration;
         }
-
+        [Microsoft.AspNetCore.Authorization.Authorize]
         [Microsoft.AspNetCore.Mvc.HttpGet]
-        public async Task<ActionResult<IEnumerable<RoomInformation>>> Index()
+        public async Task<ActionResult<IEnumerable<RoomInformation>>> Index(string token,string userData)
         {
+            TokenGeneratorController tgc = new TokenGeneratorController(_context,_configuration);
+            if(!tgc.Validate(token, userData)){
+                return Forbid();
+            }
             List<RoomInformation> rooms = new List<RoomInformation>();
 
             rooms = await _context.RoomInformations.Include(r => r.Building.Office).ToListAsync();
 
 
-            return rooms;
+            return Ok(rooms);
         }
         [Microsoft.AspNetCore.Mvc.HttpGet("name/{name}")]
         public async Task<ActionResult<IEnumerable<RoomInformation>>> Search(string name)
@@ -62,27 +67,7 @@ namespace APISalasEveris.Controllers
         {
             _context.RoomInformations.Add(room);
             await _context.SaveChangesAsync();
-            var claims = new[]
-        {
-            new Claim("UserData", JsonConvert.SerializeObject(room))
-        };
-            var token = new JwtSecurityToken
-        (
-            issuer: _configuration["ApiAuth:Issuer"],
-            audience: _configuration["ApiAuth:Audience"],
-            claims: claims,
-            expires: DateTime.UtcNow.AddDays(60),
-            notBefore: DateTime.UtcNow,
-            signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["ApiAuth:SecretKey"])),
-            SecurityAlgorithms.HmacSha256)
-        );
-
-            return Ok(
-            new
-            {
-                response = new JwtSecurityTokenHandler().WriteToken(token)
-            }
-        );
+            return NoContent();
         }
         [Microsoft.AspNetCore.Mvc.HttpPut("{id}")]
         public async Task<IActionResult> Edit(int id, RoomInformation room)

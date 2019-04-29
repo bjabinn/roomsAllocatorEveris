@@ -46,8 +46,14 @@ namespace APISalasEveris
             var connection = @"Data Source=SVQ-8Y1B8C2\SQLEXPRESS;Initial Catalog=roomAllocaor;User ID=sa;Password=Everis2016;Connection Timeout=30;integrated security=False;";
             services.AddDbContext<RoomContext>
                 (options => options.UseSqlServer(connection));
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(jwtBearerOptions =>
+            services.AddAuthentication(option =>
             {
+                option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                option.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(jwtBearerOptions =>
+            {
+                jwtBearerOptions.SaveToken = true;
                 jwtBearerOptions.TokenValidationParameters = new TokenValidationParameters()
                 {
                     ValidateAudience = true,
